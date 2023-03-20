@@ -1,0 +1,8 @@
+<main>
+  <div>
+    <app-fruit (addFruit)="addFruitToBasket($event)"></app-fruit>
+  </div>
+  <div>
+    <app-fruit-list [fruitList]="basket"></app-fruit-list>
+  </div>
+</main>
