@@ -1,0 +1,12 @@
+<h1>Obstformular</h1>
+<div>
+    <label for="name">Name:</label>
+    <input [(ngModel)]="fruit" type="text" placeholder="Bitte Name des Obst eingeben" id="name" name="name">
+</div>
+<div>
+    <button class="is-primary" (click)="resetFruit()">Reset</button>
+</div>
+<h2>Ausgabe</h2>
+<p>
+    Das Obst ist: {{ fruit }}
+</p>
