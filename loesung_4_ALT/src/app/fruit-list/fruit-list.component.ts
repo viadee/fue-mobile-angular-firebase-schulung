@@ -1,18 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FruitService } from '../fruit.service';
+import {FruitService} from "../services/fruit.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-fruit-list',
   templateUrl: './fruit-list.component.html',
   styleUrls: ['./fruit-list.component.scss'],
 })
-export class FruitListComponent implements OnInit {
-  @Input()
-  fruitList: string[] = [];
+export class FruitListComponent{
+  fruitList$: Observable<string[]>;
 
   constructor(private fruitService: FruitService) {
-    fruitService.getFruits().subscribe(value => console.log(value));
+    this.fruitList$ = fruitService.getFruits();
   }
 
-  ngOnInit(): void {}
+
 }

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-
 
 import { AppComponent } from './app.component';
 import {FruitComponent} from "./fruit/fruit.component";
@@ -16,8 +14,7 @@ import {FruitListComponent} from "./fruit-list/fruit-list.component";
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

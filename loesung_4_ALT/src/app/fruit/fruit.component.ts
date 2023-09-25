@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import {FruitService} from "../services/fruit.service";
 
 @Component({
   selector: 'app-fruit',
@@ -6,12 +7,10 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
   styleUrls: ['./fruit.component.scss'],
 })
 export class FruitComponent implements OnInit {
-  @Output()
-  public addFruit: EventEmitter<string> = new EventEmitter<string>();
 
   public fruit = '';
 
-  constructor() {}
+  constructor(private fruitService: FruitService) {}
 
   ngOnInit(): void {}
 
@@ -21,7 +20,7 @@ export class FruitComponent implements OnInit {
 
   public add(): void {
     if (this.fruit.length > 0) {
-      this.addFruit.emit(this.fruit);
+      this.fruitService.addFruit(this.fruit);
       this.fruit = '';
     }
   }
