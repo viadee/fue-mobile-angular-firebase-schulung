@@ -3,3 +3,4 @@
     <li *ngFor="let fruit of fruitList">{{fruit}}</li>
 </ul>
 <ng-template #noFruit>Kein Obst in der Liste</ng-template>
+<button (click)="getFruits()">Refresh</button>

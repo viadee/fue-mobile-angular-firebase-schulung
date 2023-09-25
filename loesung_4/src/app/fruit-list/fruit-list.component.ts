@@ -1,18 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FruitService } from '../fruit.service';
+import {Component, OnInit} from '@angular/core';
+import {FruitService} from '../fruit.service';
 
 @Component({
   selector: 'app-fruit-list',
   templateUrl: './fruit-list.component.html',
   styleUrls: ['./fruit-list.component.scss'],
 })
-export class FruitListComponent implements OnInit {
-  @Input()
+export class FruitListComponent implements OnInit{
   fruitList: string[] = [];
 
   constructor(private fruitService: FruitService) {
-    fruitService.getFruits().subscribe(value => console.log(value));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getFruits();
+  }
+
+  getFruits(): void{
+    this.fruitService.getFruits().subscribe(value => this.fruitList = value
+    );
+  }
 }

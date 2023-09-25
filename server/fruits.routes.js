@@ -97,8 +97,7 @@ module.exports.setup = (app) => {
      */
     //TODO: Accept only name
     app.post('/api/fruits', (req, res) => {
-        const fruitName = req.body.name;
-        if (validFruit(fruitName)) {
+        const fruitName = req.body.fruit;
             const id = uuid();
             fruits.push({
                 id: id,
@@ -106,11 +105,6 @@ module.exports.setup = (app) => {
             });
             res.setHeader('Location', `/fruits/${id}`);
             res.status(201).send({ data: fruits[findFruit(id)] });
-        } else {
-            res.status(400).send({
-                error: 'Name must be set and between 2 and 22 character long.'
-            });
-        }
     });
     
     /**
@@ -127,13 +121,9 @@ module.exports.setup = (app) => {
      *               $ref: '#/components/schemas/FruitResponseArray'
      *         
      */
-    //TODO: Über Map nur namen als string array zurückgeben
     app.get('/api/fruits', (req, res) => {
-        if (fruits.length > 0) {
-            res.status(200).send({ data: fruits });
-        } else {
-            res.status(200).send({ data: [] });
-        }
+        const fruitNames = fruits.map(fruit => fruit.name);
+        res.status(200).send(fruitNames);
     });
     
     /**

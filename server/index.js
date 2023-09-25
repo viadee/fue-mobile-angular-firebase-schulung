@@ -33,6 +33,7 @@ const openapiSpecification = swaggerJsdoc(options);
 let errorChance = process.env.ERROR || 0; // 0 - 1 je höher der Wert, desto wahrscheinlicher ist ein Request fehlerhaft
 
 app.use(cors());
+app.use(express.json());
 
 // Configuring body parser middleware
 app.use(bodyParser.json());
@@ -45,14 +46,14 @@ app.use('/api', function (req, res, next) {
 });
 
 //TODO: Random ausbauen
-app.use(function (req, res, next) {
-    const rand = Math.random();
-    if (rand < errorChance) {
-        res.status(500).send("Random error!");
-    } else {
-        next();
-    }
-});
+// app.use(function (req, res, next) {
+//     const rand = Math.random();
+//     if (rand < errorChance) {
+//         res.status(500).send("Random error!");
+//     } else {
+//         next();
+//     }
+// });
 
 
 fruitRoutes.setup(app);

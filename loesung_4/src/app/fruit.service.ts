@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,11 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class FruitService {
 
-  constructor(private http: HttpClient) { 
+  readonly baseUrl = 'http://localhost:3000/api';
+
+  constructor(private http: HttpClient) {
   }
-  
+
   getFruits(): Observable<string[]>{
-    const url = 'http://localhost:3333/api';
-    return this.http.get<string[]>(url + "/fruits");
+    return this.http.get<string[]>(this.baseUrl + "/fruits");
+  }
+
+  addFruit(fruit: string) {
+    this.http.post<string[]>(this.baseUrl + "/fruits", {fruit}).subscribe();
   }
 }
