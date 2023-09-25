@@ -2,15 +2,7 @@
   "components": {
     "schemas": {
       "fruit": {
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        }
+        "type": "string"
       }
     }
   }
