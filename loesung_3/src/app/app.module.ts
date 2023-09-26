@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import {FruitComponent} from "./fruit/fruit.component";
 import {FormsModule} from "@angular/forms";
 import {FruitListComponent} from "./fruit-list/fruit-list.component";
+import {LowerCasePipe} from "@angular/common";
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import {FruitListComponent} from "./fruit-list/fruit-list.component";
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    LowerCasePipe,
   ],
   providers: [],
   bootstrap: [AppComponent]
