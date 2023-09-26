@@ -17,7 +17,7 @@ export class FruitService {
     return this.http.get<string[]>(this.baseUrl + "/fruits");
   }
 
-  addFruit(fruit: string) {
+  addFruit(fruit: string): void {
     this.http.post<string[]>(this.baseUrl + "/fruits", {fruit}).subscribe();
   }
 }
