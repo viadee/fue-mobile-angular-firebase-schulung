@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Fruit Shop Capstone';
+
+  public fruit = '';
+
+  public resetFruit(): void {
+    this.fruit = '';
+  }
 }
