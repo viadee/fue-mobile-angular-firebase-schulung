@@ -1,10 +1,13 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FruitService} from "../fruit.service";
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-fruit',
-  templateUrl: './fruit.component.html',
-  styleUrls: ['./fruit.component.scss'],
+    selector: 'app-fruit',
+    templateUrl: './fruit.component.html',
+    styleUrls: ['./fruit.component.scss'],
+    standalone: true,
+    imports: [FormsModule],
 })
 export class FruitComponent implements OnInit {
   public fruit = '';
