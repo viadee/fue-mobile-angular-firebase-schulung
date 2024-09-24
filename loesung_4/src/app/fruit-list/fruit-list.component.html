@@ -1,5 +1,10 @@
 <h1>Früchte</h1>
-<ul *ngIf="fruitList.length > 0; else noFruit">
-    <li *ngFor="let fruit of fruitList">{{fruit}}</li>
-</ul>
-<ng-template #noFruit>Kein Obst in der Liste</ng-template>
+@if (fruitList.length > 0) {
+    <ul>
+        @for (fruit of fruitList; track fruit) {
+            <li>{{fruit}}</li>
+        }
+    </ul>
+} @else {
+    <div>Kein Obst in der Liste</div>
+}
