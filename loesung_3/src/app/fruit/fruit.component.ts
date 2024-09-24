@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { LowerCasePipe } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-fruit',
-    templateUrl: './fruit.component.html',
-    styleUrls: ['./fruit.component.scss'],
-    standalone: true,
-    imports: [FormsModule, LowerCasePipe],
+  selector: 'app-fruit',
+  standalone: true,
+  imports: [FormsModule, LowerCasePipe],
+  templateUrl: './fruit.component.html',
+  styleUrl: './fruit.component.scss'
 })
 export class FruitComponent implements OnInit {
   @Output()
@@ -29,4 +29,5 @@ export class FruitComponent implements OnInit {
       this.fruit = '';
     }
   }
+
 }
