@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import {FruitService} from "../fruit.service";
+import { LowerCasePipe } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-fruit',
-    templateUrl: './fruit.component.html',
-    styleUrls: ['./fruit.component.scss'],
-    standalone: true,
-    imports: [FormsModule],
+  selector: 'app-fruit',
+  standalone: true,
+  imports: [FormsModule, LowerCasePipe],
+  templateUrl: './fruit.component.html',
+  styleUrl: './fruit.component.scss'
 })
 export class FruitComponent implements OnInit {
+  @Output()
+  public addFruit: EventEmitter<string> = new EventEmitter<string>();
+
   public fruit = '';
 
-  constructor(private fruitService: FruitService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -22,8 +25,9 @@ export class FruitComponent implements OnInit {
 
   public add(): void {
     if (this.fruit.length > 0) {
-      this.fruitService.addFruit(this.fruit);
+      this.addFruit.emit(this.fruit);
       this.fruit = '';
     }
   }
+
 }

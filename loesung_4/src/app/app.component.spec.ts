@@ -4,8 +4,8 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [AppComponent],
-}).compileComponents();
+      imports: [AppComponent],
+    }).compileComponents();
   });
 
   it('should create the app', () => {
@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'loesung_1'`, () => {
+  it(`should have the 'loesung_2' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('loesung_1');
+    expect(app.title).toEqual('loesung_2');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('loesung_1 app is running!');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, loesung_2');
   });
 });
