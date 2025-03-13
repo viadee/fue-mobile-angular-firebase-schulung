@@ -5,9 +5,9 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet,FormsModule, LowerCasePipe],
+  imports: [RouterOutlet, FormsModule, LowerCasePipe],
   templateUrl: './app.component.html',
+  standalone: true,
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
