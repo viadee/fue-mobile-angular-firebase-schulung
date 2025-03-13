@@ -7,9 +7,9 @@ import { FruitListComponent } from './fruit-list/fruit-list.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet, FormsModule, FruitComponent, FruitListComponent, LowerCasePipe],
   templateUrl: './app.component.html',
+  standalone: true,
   styleUrl: './app.component.scss'
 })
 export class AppComponent {

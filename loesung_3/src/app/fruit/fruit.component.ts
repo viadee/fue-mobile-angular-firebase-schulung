@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-fruit',
-  standalone: true,
   imports: [FormsModule, LowerCasePipe],
   templateUrl: './fruit.component.html',
+  standalone: true,
   styleUrl: './fruit.component.scss'
 })
 export class FruitComponent implements OnInit {

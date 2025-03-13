@@ -8,11 +8,10 @@ import { collection, collectionData, doc, Firestore, setDoc } from '@angular/fir
 import { catchError, map, Observable, of, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, FormsModule, FruitComponent, FruitListComponent, LowerCasePipe],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [RouterOutlet, FormsModule, FruitComponent, FruitListComponent, LowerCasePipe],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   public basket: string[] = [];
