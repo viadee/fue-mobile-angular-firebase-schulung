@@ -1,6 +1,4 @@
-# Angular Schulung Capstone September 2023
-
-xx
+# Angular Schulung Capstone
 
 ## Verzeichnisse
 
