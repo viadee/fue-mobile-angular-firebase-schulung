@@ -1,0 +1,26 @@
+<main style="margin: 16px">
+  <h1>Obstformular</h1>
+  <mat-form-field>
+    <mat-label>Name:</mat-label>
+    <input matInput [(ngModel)]="fruit" type="text" placeholder="Bitte Name des Obst eingeben">
+  </mat-form-field>
+  <div>
+    <button mat-stroked-button (click)="resetFruit()">Reset</button>
+  </div>
+  <h2>Ausgabe</h2>
+  <p>
+    Das Obst ist: {{ fruit | lowercase }}
+  </p>
+  <div>
+    <mat-list>
+      @for(fruit of basket; track $index) {
+        @if(fruit.length > 5) {
+          <mat-list-item>{{ fruit }}</mat-list-item>
+        }
+      } @empty {
+        <p>Keine Früchte im Korb</p>
+      }
+    </mat-list>
+  </div>
+
+</main>

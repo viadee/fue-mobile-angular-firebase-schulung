@@ -1,0 +1,10 @@
+<h1>Früchte</h1>
+<mat-list>
+    @for (fruit of fruitList; track fruit) {
+      @if (fruit.length > 5) {
+        <mat-list-item>{{fruit}}</mat-list-item>
+      }
+    } @empty {
+      <div>Kein Obst in der Liste</div>
+    }
+</mat-list>

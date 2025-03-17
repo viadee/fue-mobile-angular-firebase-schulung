@@ -1,0 +1,15 @@
+<main style="margin: 16px">
+  <h1>Obstformular</h1>
+  <mat-form-field>
+    <mat-label>Name:</mat-label>
+    <input matInput [(ngModel)]="fruit" type="text" placeholder="Bitte Name des Obst eingeben">
+  </mat-form-field>
+  <div>
+    <button mat-stroked-button (click)="resetFruit()">Reset</button>
+  </div>
+  <h2>Ausgabe</h2>
+  <p>
+    Das Obst ist: {{ fruit | lowercase }}
+  </p>
+
+</main>
