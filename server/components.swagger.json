@@ -1,9 +1,0 @@
-{
-  "components": {
-    "schemas": {
-      "fruit": {
-        "type": "string"
-      }
-    }
-  }
-}
