@@ -1,59 +1,30 @@
 # Fruchtkorb
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+This project is for the angular and firebase course of the capstone project from the university of cologne.
 
-## Development server
+## Initial Setup
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Create and set up a [firebase project](https://console.firebase.google.com/)
+   1. Create a project with a name that is all lower caps
+   2. Initialize the Cloud Firestore with the test ruleset activated
+2. Add angular fire to your project to connect your firebase and angular project
+   1. run `ng add @angular/fire` and configure the setup like this:
+   2. Select `Y`, when asked if you want to proceed
+   3. Select `Firestore`, when asked what features you would like to set up
+   4. Select your account
+   5. Select your project
+   6. Select `[CREATE NEW APP]`
+   7. Use the same name as your angular project
+3. We now build our project with `ng build`
+4. Now we configure firebase hosting
+   1. run `npm install -g firebase-tools`
+   2. run `firebase login`
+   3. run `firebase init hosting` and configure the setup like this:
+   4. Select `Y`
+   5. Select `Use existing project`
+   6. Select your project
+   7. Enter `dist/{your project name}/browser`
+   8. Select `Y`
+   9. Select `N`
+   10. (If prompted to overwrite an existing index.html) Select `N`
+5. Now we deploy the project by running `firebase deploy`
