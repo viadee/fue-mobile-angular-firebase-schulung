@@ -1,21 +1,11 @@
-import {Component, inject} from '@angular/core';
-import {MatList, MatListItem} from '@angular/material/list';
-import {FirestoreService} from './firestore/firestore.service';
-import {AsyncPipe} from '@angular/common';
-import {MatButton} from '@angular/material/button';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    MatList,
-    AsyncPipe,
-    MatListItem,
-    MatButton
-  ],
+  imports: [],
   templateUrl: './app.html',
   standalone: true,
   styleUrl: './app.scss'
 })
 export class App {
-  public firestore = inject(FirestoreService);
 }

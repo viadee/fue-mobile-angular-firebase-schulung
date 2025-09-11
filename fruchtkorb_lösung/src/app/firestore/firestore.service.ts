@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {addDoc, collection, collectionData, Firestore} from '@angular/fire/firestore';
-import {EMPTY, Observable} from 'rxjs';
+import {EMPTY, map, Observable} from 'rxjs';
 import {Fruit} from './fruit.model';
 
 @Injectable({
@@ -16,7 +16,9 @@ export class FirestoreService {
   }
 
   private getFruits() {
-    this.fruits$ = collectionData(this.fruitCollection) as Observable<Fruit[]>;
+    this.fruits$ = (collectionData(this.fruitCollection) as Observable<Fruit[]>).pipe(
+      map(fruits => fruits.sort((a: Fruit, b: Fruit) => a.name.localeCompare(b.name)))
+    );
   }
 
   public addFruit(name: string) {
