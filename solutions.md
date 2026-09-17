@@ -1,52 +1,25 @@
-# Lösungen für die Coding Aufgaben:
+# Lösungen für die Coding-Aufgaben
 
-## Aufgabe 1 Grundlagen:
+## Aufgabe 1: Control Flow
 
-### app.html File (Bspw.)
-```
-<p>Hello World!<p>
-```
+### `app.html`
 
-### app.ts File
-```
-import {Component} from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  imports: [],
-  templateUrl: './app.html',
-  standalone: true,
-  styleUrl: './app.scss'
-})
-export class App {
-  
-}
-```
-
-### app.scss File
-```
-```
-
-## Aufgabe 2 Control Flow:
-
-### app.html File (Bspw.)
-```
+```html
 <mat-list>
-  @for(fruit of basket; track $index) {
-    @if(fruit.name.length > 5) {
-      <mat-list-item>{{fruit.name}}</mat-list-item>
-    }
+  @for (fruit of basket; track $index) {
+    <mat-list-item>{{ fruit.name }}</mat-list-item>
   } @empty {
     <p>Liste ist leer!</p>
   }
 </mat-list>
 ```
 
-### app.ts File
-```
-import {Component} from '@angular/core';
-import {MatList, MatListItem} from '@angular/material/list';
-import {Fruit} from './firestore/fruit.model';
+### `app.ts`
+
+```typescript
+import { Component } from '@angular/core';
+import { MatList, MatListItem } from '@angular/material/list';
+import { Fruit } from './shared/models/fruit.model';
 
 @Component({
   selector: 'app-root',
@@ -55,11 +28,13 @@ import {Fruit} from './firestore/fruit.model';
     MatListItem
   ],
   templateUrl: './app.html',
-  standalone: true,
   styleUrl: './app.scss'
 })
 export class App {
-  public basket: Fruit[] = [{ name: 'Apple' }, { name: 'Banana' }];
+  public basket: Fruit[] = [
+    {name: 'Apfel'},
+    {name: 'Banane'}
+  ];
 }
 ```
 
@@ -67,37 +42,69 @@ export class App {
 ```
 ```
 
-## Aufgabe 3 Firebase & Backend:
+## Aufgabe 2: Service & Observable
 
-### app.html File
+Der echte `FirestoreService` kann vorgeführt werden. Für die Übung wird der vorbereitete `MockFruitService` verwendet. Er stellt mit `fruits$` und `addFruit()` dieselbe Schnittstelle bereit, benötigt aber keine Firebase-Anbindung.
+
+### `mock-fruit.service.ts`
+
+```typescript
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Fruit} from '../models/fruit.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MockFruitService {
+  private readonly fruitsSubject = new BehaviorSubject<Fruit[]>([
+    {name: 'Apfel'},
+    {name: 'Banane'}
+  ]);
+
+  public readonly fruits$: Observable<Fruit[]> = this.fruitsSubject.asObservable();
+
+  public addFruit(name: string): void {
+    const fruits = [...this.fruitsSubject.value, {name}]
+      .sort((first, second) => first.name.localeCompare(second.name));
+
+    this.fruitsSubject.next(fruits);
+  }
+}
 ```
+
+### `app.html`
+
+```html
 <mat-list>
-    @for(fruit of firestore.fruits$ | async; track $index) {
-      <mat-list-item>{{fruit.name}}</mat-list-item>
-    } @empty {
-      <p>Liste ist leer!</p>
-    }
+  @for (fruit of fruitService.fruits$ | async; track $index) {
+    <mat-list-item>{{ fruit.name }}</mat-list-item>
+  } @empty {
+    <p>Liste ist leer!</p>
+  }
 </mat-list>
 ```
 
-### app.ts File
-```
+### `app.ts`
+
+```typescript
 import {Component, inject} from '@angular/core';
-import {FirestoreService} from './firestore/firestore.service';
+import {AsyncPipe} from '@angular/common';
 import {MatList, MatListItem} from '@angular/material/list';
+import {MockFruitService} from './shared/services/mock-fruit.service';
 
 @Component({
   selector: 'app-root',
   imports: [
     MatList,
-    MatListItem
+    MatListItem,
+    AsyncPipe
   ],
   templateUrl: './app.html',
-  standalone: true,
   styleUrl: './app.scss'
 })
 export class App {
-  public firestoreService = inject(FirestoreService)
+  public fruitService = inject(MockFruitService);
 }
 ```
 
