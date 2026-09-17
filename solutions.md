@@ -7,9 +7,9 @@
 ```html
 <mat-list>
   @for (fruit of basket; track $index) {
-    <mat-list-item>{{ fruit.name }}</mat-list-item>
+  <mat-list-item>{{ fruit.name }}</mat-list-item>
   } @empty {
-    <p>Liste ist leer!</p>
+  <p>Liste ist leer!</p>
   }
 </mat-list>
 ```
@@ -17,24 +17,18 @@
 ### `app.ts`
 
 ```typescript
-import { Component } from '@angular/core';
-import { MatList, MatListItem } from '@angular/material/list';
-import { Fruit } from './shared/models/fruit.model';
+import { Component } from "@angular/core";
+import { MatList, MatListItem } from "@angular/material/list";
+import { Fruit } from "./shared/models/fruit.model";
 
 @Component({
-  selector: 'app-root',
-  imports: [
-    MatList,
-    MatListItem
-  ],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  selector: "app-root",
+  imports: [MatList, MatListItem],
+  templateUrl: "./app.html",
+  styleUrl: "./app.scss",
 })
 export class App {
-  public basket: Fruit[] = [
-    {name: 'Apfel'},
-    {name: 'Banane'}
-  ];
+  public basket: Fruit[] = [{ name: "Apfel" }, { name: "Banane" }];
 }
 ```
 
@@ -42,18 +36,18 @@ export class App {
 
 ```html
 <mat-list>
-  @for (fruit of basket; track $index) {
-    @if (fruit.name.length > 5) {
-      <mat-list-item>{{ fruit.name }}</mat-list-item>
-    }
-  } @empty {
-    <p>Liste ist leer!</p>
+  @for (fruit of basket; track $index) { @if (fruit.name.length > 5) {
+  <mat-list-item>{{ fruit.name }}</mat-list-item>
+  } } @empty {
+  <p>Liste ist leer!</p>
   }
 </mat-list>
 ```
 
 ### app.scss File
+
 ```
+
 ```
 
 ## Aufgabe 2: Service & Observable
@@ -63,9 +57,9 @@ export class App {
 ```html
 <mat-list>
   @for (fruit of fruitService.fruits$ | async; track $index) {
-    <mat-list-item>{{ fruit.name }}</mat-list-item>
+  <mat-list-item>{{ fruit.name }}</mat-list-item>
   } @empty {
-    <p>Liste ist leer!</p>
+  <p>Liste ist leer!</p>
   }
 </mat-list>
 ```
@@ -73,20 +67,16 @@ export class App {
 ### `app.ts`
 
 ```typescript
-import {Component, inject} from '@angular/core';
-import {AsyncPipe} from '@angular/common';
-import {MatList, MatListItem} from '@angular/material/list';
-import {MockFruitService} from './shared/services/mock-fruit.service';
+import { Component, inject } from "@angular/core";
+import { AsyncPipe } from "@angular/common";
+import { MatList, MatListItem } from "@angular/material/list";
+import { MockFruitService } from "./shared/services/mock-fruit.service";
 
 @Component({
-  selector: 'app-root',
-  imports: [
-    MatList,
-    MatListItem,
-    AsyncPipe
-  ],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  selector: "app-root",
+  imports: [MatList, MatListItem, AsyncPipe],
+  templateUrl: "./app.html",
+  styleUrl: "./app.scss",
 })
 export class App {
   public fruitService = inject(MockFruitService);
@@ -94,7 +84,9 @@ export class App {
 ```
 
 ### app.scss File
+
 ```
+
 ```
 
 ## Aufgabe 3: Data Binding
@@ -104,9 +96,9 @@ export class App {
 ```html
 <mat-list>
   @for (fruit of fruitService.fruits$ | async; track $index) {
-    <mat-list-item>{{ fruit.name }}</mat-list-item>
+  <mat-list-item>{{ fruit.name }}</mat-list-item>
   } @empty {
-    <p>Liste ist leer!</p>
+  <p>Liste ist leer!</p>
   }
 </mat-list>
 
@@ -119,7 +111,7 @@ export class App {
       type="text"
       [value]="newFruit()"
       (input)="newFruit.set(fruitInput.value)"
-    >
+    />
   </mat-form-field>
 
   <button mat-flat-button (click)="fruitService.addFruit(newFruit())">
@@ -131,16 +123,16 @@ export class App {
 ### `app.ts`
 
 ```typescript
-import {AsyncPipe} from '@angular/common';
-import {Component, inject, signal} from '@angular/core';
-import {MatButton} from '@angular/material/button';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {MatList, MatListItem} from '@angular/material/list';
-import {MockFruitService} from './shared/services/mock-fruit.service';
+import { AsyncPipe } from "@angular/common";
+import { Component, inject, signal } from "@angular/core";
+import { MatButton } from "@angular/material/button";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatList, MatListItem } from "@angular/material/list";
+import { MockFruitService } from "./shared/services/mock-fruit.service";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   imports: [
     AsyncPipe,
     MatButton,
@@ -148,14 +140,14 @@ import {MockFruitService} from './shared/services/mock-fruit.service';
     MatInput,
     MatLabel,
     MatList,
-    MatListItem
+    MatListItem,
   ],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  templateUrl: "./app.html",
+  styleUrl: "./app.scss",
 })
 export class App {
   public readonly fruitService = inject(MockFruitService);
-  public readonly newFruit = signal('');
+  public readonly newFruit = signal("");
 }
 ```
 
@@ -164,7 +156,7 @@ export class App {
 In `app.ts` zusätzlich `LowerCasePipe` importieren:
 
 ```typescript
-import {AsyncPipe, LowerCasePipe} from '@angular/common';
+import { AsyncPipe, LowerCasePipe } from "@angular/common";
 ```
 
 Anschließend `LowerCasePipe` zum `imports`-Array hinzufügen und die Ausgabe in `app.html` anpassen:
@@ -179,55 +171,53 @@ Anschließend `LowerCasePipe` zum `imports`-Array hinzufügen und die Ausgabe in
 
 ```html
 @if (fruitService.fruits$ | async; as fruits) {
-  <mat-list>
-    @for (fruit of fruits; track $index) {
-      <mat-list-item>
-        {{ fruit.name }}
-        @if (favouriteIndex() === $index) {
-          *
-        }
-      </mat-list-item>
-    }
-  </mat-list>
+<mat-list>
+  @for (fruit of fruits; track fruit) {
+  <mat-list-item>
+    {{ fruit.name }} @if (favourite() === fruit) { * }
+  </mat-list-item>
+  }
+</mat-list>
 
-  <div>
-    <mat-form-field>
-      <mat-label>Name der Frucht</mat-label>
-      <input
-        #fruitInput
-        matInput
-        type="text"
-        [value]="newFruit()"
-        (input)="newFruit.set(fruitInput.value)"
-      >
-    </mat-form-field>
+<div>
+  <mat-form-field>
+    <mat-label>Name der Frucht</mat-label>
+    <input
+      #fruitInput
+      matInput
+      type="text"
+      [value]="newFruit()"
+      (input)="newFruit.set(fruitInput.value)"
+    />
+  </mat-form-field>
 
-    <button mat-flat-button (click)="fruitService.addFruit(newFruit())">
-      Frucht hinzufügen
-    </button>
-  </div>
+  <button mat-flat-button (click)="fruitService.addFruit(newFruit())">
+    Frucht hinzufügen
+  </button>
+</div>
 
-  <app-favourite
-    [fruits]="fruits"
-    (favouriteChanged)="favouriteIndex.set($event)"
-  ></app-favourite>
+<app-favourite
+  [fruits]="fruits"
+  (favouriteChanged)="favourite.set($event)"
+></app-favourite>
 }
 ```
 
 ### `app.ts`
 
 ```typescript
-import {AsyncPipe} from '@angular/common';
-import {Component, inject, signal} from '@angular/core';
-import {MatButton} from '@angular/material/button';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {MatList, MatListItem} from '@angular/material/list';
-import {Favourite} from './favourite/favourite';
-import {MockFruitService} from './shared/services/mock-fruit.service';
+import { AsyncPipe } from "@angular/common";
+import { Component, inject, signal } from "@angular/core";
+import { MatButton } from "@angular/material/button";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatList, MatListItem } from "@angular/material/list";
+import { Favourite } from "./favourite/favourite";
+import { Fruit } from "./shared/models/fruit.model";
+import { MockFruitService } from "./shared/services/mock-fruit.service";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   imports: [
     AsyncPipe,
     Favourite,
@@ -236,15 +226,15 @@ import {MockFruitService} from './shared/services/mock-fruit.service';
     MatInput,
     MatLabel,
     MatList,
-    MatListItem
+    MatListItem,
   ],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  templateUrl: "./app.html",
+  styleUrl: "./app.scss",
 })
 export class App {
   public readonly fruitService = inject(MockFruitService);
-  public readonly newFruit = signal('');
-  public readonly favouriteIndex = signal<number | null>(null);
+  public readonly newFruit = signal("");
+  public readonly favourite = signal<Fruit | null>(null);
 }
 ```
 
@@ -254,8 +244,8 @@ export class App {
 <mat-form-field>
   <mat-label>Lieblingsfrucht</mat-label>
   <mat-select (selectionChange)="favouriteChanged.emit($event.value)">
-    @for (fruit of fruits(); track $index) {
-      <mat-option [value]="$index">{{ fruit.name }}</mat-option>
+    @for (fruit of fruits(); track fruit) {
+    <mat-option [value]="fruit">{{ fruit.name }}</mat-option>
     }
   </mat-select>
 </mat-form-field>
@@ -264,25 +254,20 @@ export class App {
 ### `favourite.ts`
 
 ```typescript
-import {Component, input, output} from '@angular/core';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatOption, MatSelect} from '@angular/material/select';
-import {Fruit} from '../shared/models/fruit.model';
+import { Component, input, output } from "@angular/core";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatOption, MatSelect } from "@angular/material/select";
+import { Fruit } from "../shared/models/fruit.model";
 
 @Component({
-  selector: 'app-favourite',
-  imports: [
-    MatFormField,
-    MatLabel,
-    MatOption,
-    MatSelect
-  ],
-  templateUrl: './favourite.html',
-  styleUrl: './favourite.scss'
+  selector: "app-favourite",
+  imports: [MatFormField, MatLabel, MatOption, MatSelect],
+  templateUrl: "./favourite.html",
+  styleUrl: "./favourite.scss",
 })
 export class Favourite {
   public readonly fruits = input.required<readonly Fruit[]>();
-  public readonly favouriteChanged = output<number>();
+  public readonly favouriteChanged = output<Fruit>();
 }
 ```
 
@@ -291,13 +276,8 @@ export class Favourite {
 In `app.html` erhält das Listenelement die Klasse abhängig vom Signalwert:
 
 ```html
-<mat-list-item
-  [class.favourite]="favouriteIndex() === $index"
->
-  {{ fruit.name }}
-  @if (favouriteIndex() === $index) {
-    *
-  }
+<mat-list-item [class.favourite]="favourite() === fruit">
+  {{ fruit.name }} @if (favourite() === fruit) { * }
 </mat-list-item>
 ```
 
